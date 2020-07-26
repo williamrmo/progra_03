@@ -1,0 +1,16 @@
+Temas:
+        Herencia
+            Herencia simple: una sola clase base
+                class acuaticos: publi vehiculo
+                {
+
+                }
+            Hrencia multiple, mas de una clase base
+                class otro : public vehiculo, terrestre
+                {
+
+                }
+
+        *Pilas      
+            El ultimo en ingresar, es el primero en salir.
+            insert, borrrar y mostrar / si esta vacio va a s esr 0.

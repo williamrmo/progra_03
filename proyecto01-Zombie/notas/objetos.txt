@@ -1,0 +1,93 @@
+Creamos la estructura del objeto en un hpp
+    #include <string>
+
+    // add the Song class here:
+    class Song {
+    
+    // private
+    std::string title;
+
+    public:
+
+    // public
+    void add_title(std::string new_title);
+    std::string get_title();
+    
+    };
+
+Creamos los methodos del objeto en un cpp
+    #include "song.hpp"
+
+    // add Song method definitions here:
+    void Song::add_title(std::string new_title) {
+
+    title = new_title;
+
+    }
+
+    std::string Song::get_title() {
+
+    return title;
+
+    }
+
+Usamos el objeto en el main.cpp
+    #include <iostream>
+    #include "song.hpp"
+
+    int main() {
+
+    Song electric_relaxation;
+    electric_relaxation.add_title("Electric Relaxation");
+    std::cout << electric_relaxation.get_title();
+    
+    }
+
+
+Tema constructor
+.hpp
+    #include <string>
+
+    class Song {
+    
+    std::string title;
+    std::string artist;
+
+    public:
+    // Add a constructor here:
+    Song(std::string new_title, std::string new_artist);
+    
+    std::string get_title();
+
+    std::string get_artist();
+    
+    };
+
+.cpp
+    #include "song.hpp"
+
+    // add the Song constructor here:
+    Song::Song(std::string new_title, std::string new_artist)
+        : title(new_title), artist(new_artist) {}
+
+    std::string Song::get_title() {
+
+    return title;
+
+    }
+
+    std::string Song::get_artist() {
+
+    return artist;
+
+    }
+
+.main
+    #include <iostream>
+    #include "song.hpp"
+
+    int main() {
+
+    Song back_to_black("Back to Black", "Amy Winehouse");
+    
+    }

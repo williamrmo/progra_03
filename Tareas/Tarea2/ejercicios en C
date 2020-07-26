@@ -1,0 +1,28 @@
+Realice los siguientes ejercicios en lenguaje C.
+
+1. El año bisiesto ocurre en cada año que es divisible por cuatro y solo en años del siglo que se dividen en partes iguales por 400. Por ejemplo, 800, 1200, 2000 fueron años bisiestos… Pero 1700 y 1900 no lo fueron porque no son divisibles por 400, a pesar de que son divisibles por cuatro. Elabore un programa en C que solicite al usuario un año y que le indique si es bisiesto.
+
+2. Elabore un programa en C que calcule el salario de un trabajador, para esto debe solicitar el monto del salario por hora, las horas trabajadas en un mes y considerar los siguientes porcentajes para hacer el rebajo de impuesto de renta:
+- Menos de 800.000 no paga renta.
+- Entre 800.000 y 1.200.000 sobre el exceso paga el 10% de renta.
+- Entre 1.200.000 y 1.800.000 sobre el exceso paga el 15% de renta.
+- De 1.800.000 en adelante sobre el exceso paga el 20% de renta.
+
+3. Elabore un programa en C que:
+- Pida por teclado dos números (datos enteros).
+- En el caso de que el primer número introducido por el usuario, no sea mayor que cero y el segundo menor que cero, muestre por pantalla el mensaje:
+"ERROR: El primer número debe ser mayor que cero y el segundo menor que cero."
+- En caso contrario, muestre por pantalla los números que hay entre los dos números introducidos por el usuario, ambos inclusive, así como, la suma de todos ellos.
+
+Ejemplo de funcionamiento
+
+Introduzca primer número entero: 5
+Introduzca segundo número entero: -2
+-2 -1 0 1 2 3 4 5
+La suma es 12
+
+4. Múltiplos de 3.
+Elabore un programa en C que muestre por pantalla todos los números múltiplos de 3 que hay entre el -15 y el 15, ambos inclusive.
+
+En pantalla:
+-15 -12 -9 -6 -3...
