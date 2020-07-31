@@ -1,25 +1,48 @@
 #include <string>
 
+// #define NULL 0
+
 using namespace std;
 
-class Board
+class Nodo_Board
 {
 
 private:
 
-    int s_x;
-    int s_y;
-    int size[0][0];
-    int enemies;
-    int extra_life;
-    int out_x;
-    int out_y;
+    int id;
+    int status;     // show content : Active : 1 / Inactive : 0
+    int content;    // kind of content : empty : 0 / extra life : 1 / zombie : 2 / player : 3
+    int up;         // up move alternative : don't move alternative : 0
+    int left;       // left move alternative : don't move alternative : 0
+    int rigth;      // rigth move alternative : don't move alternative : 0
+    int dowm;       // dowm move alternative : don't move alternative : 0
+    Nodo_Board *next;
 
 public:
+    //Board *next;
+    Nodo_Board(int id, int status/*, int content, int up, int left, int rigth, int dowm*/);
 
-    Board(int n_s_x, int n_s_y, int n_enemies, int n_extra_life, int p_out_x, int p_out_y);
-    ~Board();
-    int get_matrix();
+    void imprimir();
+    void mostrar();
+    /*
+    int get_id();
+    int get_statues(int id);
+    int get_content(int id);
+    int get_up(int id);
+    int get_left(int id);
+    int get_right(int id);
+    int get_dowm(int id);
+    */
 };
 
 
+class ListBoard
+{
+
+public:
+    Nodo_Board head;
+    ListBoard();
+    void push(int id, int status);
+    void mostrar1();
+    bool estavacio();
+};

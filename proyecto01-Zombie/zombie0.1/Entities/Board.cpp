@@ -1,32 +1,96 @@
+#include <iostream>
 #include "Board.hpp"
 
-Board::Board(int n_s_x, int n_s_y, int n_enemies, int n_extra_life, int p_out_x, int p_out_y)
+
+Nodo_Board::Nodo_Board(int new_id, int new_status/*, int content, int up, int left, int rigth, int dowm*/)
 {
-    s_x = n_s_x;
-    s_y = n_s_y;
+    id = new_id;
+    status = new_status;
+    next = NULL;
+}
 
-    size[s_x][s_y];
+void Nodo_Board::imprimir()
+{
+    cout << id << ", " << status << endl;
+}
 
-    for(int i = 0; i <= s_x; i++){
-        for(int j = 0; j <= s_y; j++){
-            size[i][j] = 5;
-        }
+void Nodo_Board::mostrar()
+{
+    if(next == NULL) imprimir();
+    else
+    {
+        imprimir();
+        next.mostrar();
     }
-
-    enemies = n_enemies;
-    extra_life = n_extra_life;
-    out_x = p_out_x;
-    out_y = p_out_y;
-
 }
 
-Board::~Board()
+/*      Lista Board      */
+ListBoard::ListBoard()
 {
+    head = NULL;
 }
 
-int Board::get_matrix()
+bool ListBoard::estavacio()
+{
+	if (head == NULL)
+		return true;
+	else
+		return false;
+}
+
+void ListBoard::push(int id, int status)
+{
+    Nodo_Board *Mi_Board = new Nodo_Board(id, status);
+
+    if(estavacio())
+	{
+		head = Mi_Board;
+	}
+	else
+	{
+		Mi_Board.next -> head;
+		head = head.next;
+
+	}
+}
+
+void ListBoard::mostrar1()
+{
+    head.mostrar();
+}
+/*
+int Board::get_id()
 {
 
-
-    return size;
 }
+
+int Board::get_statues(int id)
+{
+
+}
+
+int Board::get_content(int id)
+{
+
+}
+
+int Board::get_up(int id)
+{
+
+}
+
+int Board::get_left(int id)
+{
+
+}
+
+int Board::get_right(int id)
+{
+
+}
+int Board::get_dowm(int id)
+{
+
+}
+
+*/
