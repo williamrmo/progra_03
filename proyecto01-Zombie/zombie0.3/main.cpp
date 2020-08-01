@@ -2,6 +2,7 @@
 
 int main()
 {
+
     main_menu();
 
     return 0;
@@ -16,6 +17,7 @@ int main()
 
         while (opt != 't')
         {   
+            system("clear");
             cout << "           Zombiland           " << endl;
             cout << "Ingrese 'n' para una nueva parida." << endl;
             cout << "Ingrese 'p' para ver mejores putuaciones." << endl;
@@ -28,10 +30,12 @@ int main()
                 case 'n':
                     /* nueva partida */
                     new_game();
-                
+                    //system("clear");
                     break;
                 case 'p':
                     /* mostrar registros */
+                    read_file();
+                    //system("clear");
                     break;
                 case 't':
                     /* Finalizar Juego */
@@ -48,10 +52,36 @@ int main()
     void new_game()
     {
         char opt;
+        char opt_level;
+
         string set_name;
+        int set_level = 0;
         static ListBoard c;
 
-        for (int i = 0; i < 25; i++) c.push(( i + 1), 0);
+        cout << "   Elija el nivel al que desea jugar" << endl;
+        cout << "   'z' para facil" << endl;
+        cout << "   'x' para medio" << endl;
+        cout << "   'c' para dificil" << endl;
+        cout << "   'v' para extremo" << endl;
+        cout << "   Seleccione: " << endl;
+        cin >> opt_level;
+        
+        while (set_level == 0)
+        {
+            if(opt_level == 'z') set_level = EASY;
+            else if(opt_level == 'x')set_level = MEDIUN;
+            else if(opt_level == 'c')set_level = HARD;
+            else if(opt_level == 'v')set_level = EXTREME;
+            else 
+            {
+                cout << "Error: Nivel no disponible." << endl;
+                 cout << "   Seleccione: " << endl;
+        cin >> opt_level;
+            }
+        }
+        
+
+        for (int i = 0; i < set_level; i++) c.push(( i + 1), 0);
 
         cout << "   Ingrese 'u' J1 VS CPU." << endl;
         cout << "   Ingrese 'd' J1 VS J2." << endl;
@@ -66,16 +96,8 @@ int main()
             {
                 case 'u':
                     /* J1 VS CPU */
-                    /*cout << "   Ingrese su nombre: ";
-                    cin >> set_name;
-
-                    static Player a(1, set_name),  b(2, "CPU");
-
-                    show_info(a, b);
-                    
-                    game_menu(a, b, c);
-
-                    opt = 't';*/
+                    cout << "Temporalmente no disponible" << endl;
+                    opt = 't';
                     
                     break;
                 case 'd':
@@ -91,7 +113,7 @@ int main()
 
                     show_info(a, b);
 
-                    game_menu(a, b, c);
+                    game_menu(a, b, c, set_level);
                     
                     opt = 't';
                     
@@ -99,27 +121,30 @@ int main()
                 case 't':
                     /* Finalizar la partida */
                     cout << "   Finalizar partida." << endl;
-                    /*
-                        Terminar la partida
-                        Generar una nueva
-                        Ejecutar el destructor
-                    */
                     break;
                 default:
                     cout << "   Error: movimieto no valido." << endl;
                     break;
             }
         }
+
+
     }
 
     // menu for game
-    void game_menu(Player a, Player b, ListBoard board)
+    void game_menu(Player a, Player b, ListBoard board, int level)
     {
         char opt;
         int turn = 1; // for choose hte turn
         int pos;
+        string level_name;
 
-        generate(board, 25);
+        if(level == EASY) level_name = "easy";
+        else if(level == MEDIUN) level_name = "medium";
+        else if(level == HARD) level_name = "hard";
+        else level_name = "extreme";
+
+        generate(board, level);
         
         cout << "                  Zombiland           " << endl;
         cout << "       Ingrese 'a' para mover a la derecha." << endl;
@@ -130,7 +155,7 @@ int main()
 
         show_info(a, b);
 
-        canva(a, b, board, 25);
+        canva(a, b, board, level);
 
         while (opt != 't')
         {   
@@ -141,7 +166,6 @@ int main()
             cin >> opt;
             
             /* dibujae tablero */
-            
 
             if(turn == 1) pos = a.get_position();
             else pos = b.get_position();
@@ -155,14 +179,14 @@ int main()
                         if (turn == 1) 
                         {
                             a.set_position(pos - 1);
-                            a.set_life(rules_life(a,board,25));
-                            a.set_point(rules_point(a,board,25));
+                            a.set_life(rules_life(a,board,level));
+                            a.set_point(rules_point(a,board,level));
                         }
                         else 
                         {
                             b.set_position(pos - 1);
-                            b.set_life(rules_life(b,board,25));
-                            b.set_point(rules_point(b,board,25));
+                            b.set_life(rules_life(b,board,level));
+                            b.set_point(rules_point(b,board,level));
                         }           
                     }
                     else cout << "Error: movimiento no valido." << endl;
@@ -176,14 +200,14 @@ int main()
                         if (turn == 1)
                         {
                             a.set_position(pos + 1);
-                            a.set_life(rules_life(a,board,25));
-                            a.set_point(rules_point(a,board,25));
+                            a.set_life(rules_life(a,board,level));
+                            a.set_point(rules_point(a,board,level));
                         }
                         else 
                         {
                             b.set_position(pos + 1);
-                            b.set_life(rules_life(b,board,25));
-                            b.set_point(rules_point(b,board,25));
+                            b.set_life(rules_life(b,board,level));
+                            b.set_point(rules_point(b,board,level));
                         }                         
                     }
                     else cout << "Error: movimiento no valido." << endl;
@@ -196,14 +220,14 @@ int main()
                         if (turn == 1) 
                         {
                             a.set_position(pos - 5);  
-                            a.set_life(rules_life(a,board,25));
-                            a.set_point(rules_point(a,board,25));
+                            a.set_life(rules_life(a,board,level));
+                            a.set_point(rules_point(a,board,level));
                         }
                         else 
                         {
                             b.set_position(pos - 5);   
-                            b.set_life(rules_life(b,board,25));
-                            b.set_point(rules_point(b,board,25));
+                            b.set_life(rules_life(b,board,level));
+                            b.set_point(rules_point(b,board,level));
                         }                        
                     }
                     else cout << "Error: movimiento no valido." << endl;
@@ -212,18 +236,18 @@ int main()
                 case 's':
 
                     /* validar movimiento */
-                    if (move_s(pos, 25)){
+                    if (move_s(pos, level)){
                         if (turn == 1) 
                         {
                             a.set_position(pos + 5);   
-                            a.set_life(rules_life(a,board,25));
-                            a.set_point(rules_point(a,board,25));
+                            a.set_life(rules_life(a,board,level));
+                            a.set_point(rules_point(a,board,level));
                         }
                         else 
                         {
                             b.set_position(pos + 5);  
-                            b.set_life(rules_life(b,board,25));
-                            b.set_point(rules_point(b,board,25));
+                            b.set_life(rules_life(b,board,level));
+                            b.set_point(rules_point(b,board,level));
                         }                        
                     }
                     else cout << "Error: movimiento no valido." << endl;
@@ -232,6 +256,7 @@ int main()
                 case 't':
                     /* Finalizar la partida */
                     cout << "       Finalizar partida." << endl;
+                    this_thread::sleep_for (std::chrono::seconds(5));
                     break;
 
                 default:
@@ -242,35 +267,47 @@ int main()
 
             show_info(a, b);
 
-            canva(a, b, board, 25);
-            
-            if (a.get_position() == 25)
-            {
-                cout << "El jugador " << a.get_name() << "ha ganado!" << endl;
-                opt = 't';
-            }
-            else if (b.get_position() == 25)
-            {
-                cout << "El jugador " << b.get_name() << "ha ganado!" << endl;
-                opt = 't';
-            }
-            else if(a.get_life() == 0)
-            {
-                cout << "El jugador " << a.get_name() << "ha perdido :(" << endl;
-                opt = 't';
-            }
-            else if(b.get_life() == 0)
-            {
-                cout << "El jugador " << b.get_name() << "ha perdido :(" << endl;
-                opt = 't';
-            }
-
+            canva(a, b, board, level);
 
             if(turn == 1) turn = 2;
             else turn = 1;
+            
         }
         
 
+        if(a.get_position() == level || b.get_position() == level)
+        {
+            if (a.get_point() > b.get_point() && a.get_life() > 0)
+            {
+                cout << "El jugador " << a.get_name() << "ha perdido :(" << endl;
+                opt = 't';
+                write_file(a.get_name(), level_name, a.get_point());
+            }
+            else if(a.get_point() < b.get_point() && b.get_life() > 0)
+            {
+                cout << "El jugador " << b.get_name() << "ha ganado!" << endl;
+                opt = 't';
+                write_file(b.get_name(), level_name, b.get_point());
+            }
+            else opt = 't';
+            this_thread::sleep_for (std::chrono::seconds(5));
+        }
+        else if(a.get_position() == level && b.get_position() == level)
+        {
+            if (a.get_point() > b.get_point() && a.get_life() > 0)
+            {
+                cout << "El jugador " << a.get_name() << "ha ganado!" << endl;
+                opt = 't';
+                write_file(a.get_name(), level_name, a.get_point());
+            }
+            else if(a.get_point() < b.get_point() && b.get_life() > 0)
+            {
+                cout << "El jugador " << b.get_name() << "ha ganado!" << endl;
+                opt = 't';
+                write_file(b.get_name(), level_name, b.get_point());
+            }
+            else opt = 't';
+        }
     }
 
 #pragma endregion
@@ -314,7 +351,7 @@ int main()
         do
         {
             pos = rand() % level + 1;
-            cout << "Pos: " << pos << ", content: "<< board.get_content(pos) << ", enemies: " << enemies << ", live: " << live << endl;
+            //cout << "Pos: " << pos << ", content: "<< board.get_content(pos) << ", enemies: " << enemies << ", live: " << live << endl;
             
 
             if (board.get_content(pos) == 0 && live != 0) 
@@ -328,7 +365,7 @@ int main()
         do
         {
             pos = rand() % level + 1;
-            cout << "Pos: " << pos << ", content: "<< board.get_content(pos) << ", enemies: " << enemies << ", live: " << live << endl;
+            //cout << "Pos: " << pos << ", content: "<< board.get_content(pos) << ", enemies: " << enemies << ", live: " << live << endl;
 
             if (board.get_content(pos) == 0 && enemies != 0) 
             {

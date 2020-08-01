@@ -1,0 +1,2 @@
+ - username: will, level: easy, points: 100
+ - username: mika, level: easy, points: 290

@@ -21,13 +21,11 @@ public:
     Player(int set_id, string set_name);
     //~Player();
     int get_id();
-    //void set_id(int set_id);
     // life methods
     int get_life();
     void set_life(int n);
 
     // name methods
-    //void set_name(string set_name);
     string get_name();
 
     // points methods

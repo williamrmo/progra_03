@@ -4,8 +4,12 @@
 #include <iostream>
 #include <string>
 #include <random>
+    #include <thread>
+    #include <chrono>  
+
 #include "./Entities/Player.hpp"
 #include "./DAL/LinkedList.hpp"
+#include "./DAL/file.hpp"
 
 #define EASY 25
 #define MEDIUN 45
@@ -15,7 +19,7 @@
 using namespace std;
 
 void main_menu();
-void game_menu(Player a, Player b, ListBoard board);
+void game_menu(Player a, Player b, ListBoard board, int level);
 void new_game();
 
 void generate(ListBoard board, int level);
