@@ -7,21 +7,19 @@ Node::~Node()
 
 void Node::print_node(int player_1, int player_2)
 {
-    if (id == player_1)
-    {
-        cout << "j1" << endl;
-    }
-    else if (id == player_2)
-    {
-        cout << "j2" << endl;
-    }
+
+    cout << "\t";
     
+    if (id % 5 == 0)
+    {
+        // id, status, content
+        cout << id << ", " << status << ", " << content << endl;
+    }
     else
     {
-        cout << id << endl;
+        cout << id << ", " << status << ", " << content << " ";
     }
     
-
 }
 
 void Node::show(int player_1, int player_2)
@@ -53,23 +51,23 @@ bool ListBoard::empty()
     
 }
 
-void ListBoard::insert_at_begin(int set_id, int set_status, int set_content)
+void ListBoard::insert_at_begin(int set_id, int set_content)
 {
-    Node *new_node = new Node(set_id, set_status, set_content);
+    Node *new_node = new Node(set_id, set_content);
     new_node -> next = this -> header;
     this -> header = new_node;
 }
 
-void ListBoard::push(int set_id, int set_status, int set_content)
+void ListBoard::push(int set_id, int set_content)
 {
    if (header ==NULL)
    {
-       insert_at_begin(set_id, set_status, set_content);
+       insert_at_begin(set_id, set_content);
        return;
    }
    else
    {
-       Node *new_node = new Node(set_id, set_status, set_content);
+       Node *new_node = new Node(set_id, set_content);
        Node *ptr = this -> header;
 
        while (ptr -> next )

@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <string>
 
 using namespace std;
@@ -7,6 +10,7 @@ class Player
 
 private:
 
+    int id;
     int life;
     string name;
     int points;
@@ -14,21 +18,21 @@ private:
 
 public:
 
-    Player(int new_life, string new_name);
+    Player(int set_id, string set_name);
     //~Player();
-
+    int get_id();
+    //void set_id(int set_id);
     // life methods
     int get_life();
-    void reduce_life(int n);
-    void increased_life(int n);
+    void set_life(int n);
 
     // name methods
+    //void set_name(string set_name);
     string get_name();
 
     // points methods
     int get_point();
-    void reduce_points(int n);
-    void increased_points(int n);
+    void set_point(int n);
 
     // position methods
     int get_position();
@@ -36,3 +40,4 @@ public:
     
 };
 
+#endif

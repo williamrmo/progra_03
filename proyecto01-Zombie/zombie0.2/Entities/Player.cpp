@@ -1,11 +1,11 @@
 #include "Player.hpp"
 
 // constructor
-Player::Player(int new_life, string new_name)
+Player::Player()
 {
 
-    life    = new_life;
-    name    = new_name;
+    life    = 3;
+    name    = " ";
     points  = 0;
     position = 0;
 
@@ -36,6 +36,12 @@ void Player::increased_life(int n)
 }
 
 // name methods
+
+void Player::set_name(string set_name)
+{
+    name = set_name;
+}
+
 string Player::get_name()
 {
     return name;

@@ -22,8 +22,9 @@ int main() {
 
    ListBoard b;
 
-   b.push(1);
-   b.print();
+    for (int i = 0; i < 25; i++) b.push((i+1), 1);
+    
+    b.print(0,0);
     return 0;
 }
 

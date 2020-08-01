@@ -1,3 +1,5 @@
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
 #include <iostream>
 #include <string>
 
@@ -20,13 +22,13 @@ public:
     void show(int player_1, int player_2);
 
     // status
-    int get_status();
-    void set_status();
+    int get_status_node(int id);
+    void set_status_node(int id, int value);
 
     // content
-    int get_content();
-    void set_content();
-    
+    int get_content_node(int id);
+    void set_content_node(int id, int value);
+
 };
 
 
@@ -46,4 +48,15 @@ public:
     void push(int set_id, int set_content);
     void insert_at_begin(int set_id, int set_content);
     void print(int player_1, int player_2);
+
+    // status
+    int get_status(int id);
+    void set_status(int id, int value);
+
+    // content
+    int get_content(int id);
+    void set_content(int id, int value);
+    
 };
+
+#endif
